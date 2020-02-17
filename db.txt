@@ -1,0 +1,37 @@
+create database webApp;
+use webApp;
+
+// Table for storing shape details:
+create table shapeDetails (
+	ID int(255) auto_increment unique not null,
+        FlowChartId int(255) not null,
+	ParentId int(255),
+        ShapeId int(255) not null,
+	ShapeHeading varchar(250) not null,
+        ShapeTypeId int(255) not null,
+        ShapeDesc varchar(2000) not null,
+        condition1 varchar(200) ,
+        condition2 varchar(200) ,
+        condition3 varchar(200) ,
+        condition4 varchar(200) ,
+	foreign key(FlowChartId) references flowCharts(flowChartId),
+        foreign key(ShapeTypeId) references shapeType(shapeTypeID ),
+        key (ParentId, ShapeId)
+);                   
+
+
+//Table for storing flowChart Names:
+create table flowCharts(
+	flowChardId int(255) primary key auto_increment not null,
+        flowChartName varchar(500) not null
+);
+
+//Table for storing type of shape:
+create table shapeType(
+	shapeTypeID int(255) primary key not null,
+        shapeType varchar(100) not null
+);
+
+
+// Insert Query for shapeType table 
+insert into shapeType(shapeTypeId, shapeType) values (101, 'draw_circle'), (102, 'draw_diamond'), (103, 'draw_oval'), (104, 'draw_rectangle'), (105, 'draw_square');
