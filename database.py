@@ -9,8 +9,9 @@ with open("dbCredentials.txt") as file:
             newLine = line.replace(" ", "")
             newLine = newLine.rstrip('\n')
             key = newLine.find('=')
-            credentials[newLine[0:key]] = newLine[key+1:]
-
+            if key != -1:
+                credentials[newLine[0:key]] = newLine[key+1:]
+print(credentials)
 # MySQL Connection
 database = mysql.connector.connect(
     host=credentials['host'],
