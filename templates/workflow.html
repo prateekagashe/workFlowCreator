@@ -1,0 +1,15 @@
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+{% include 'header.html' %}
+{% block content %}
+{% endblock %}
+<div class="headCard">
+    <h1 style="text-align:center;">{{session['work_flow_name']}}</h1>
+   <form method="POST">
+            {{ form.hidden_tag() }}
+            <br>
+            {{form.delete(class="button")}}
+   </form>
+</div>
+
+<canvas id="canvas" class="canvas" width="1200" height="1000" style="border:solid 1px #000000; margin-left:310px; "  ></canvas>

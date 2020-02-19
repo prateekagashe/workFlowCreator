@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="{{url_for('static', filename= 'object.js')}}" ></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+</head>
+<body>
+
+{% include 'header.html' %}
+{% block content %}
+{% endblock %}
+
+<div class="card">
+   <h1 style=" text-align:center; font-weight:bold;">Add or Retrieve a <br /> Work Flow </h1>
+<!--   <h1 style=" text-align:center; font:bold;"></h1>-->
+
+   <hr style="width:60%">
+   <br>
+
+   <button id="AddWorkFlow" class="button buttonAWF" onclick= wfAddModal();>Create a new Work Flow</button>
+   <button id="retrieveWorkFlow" class="button buttonRWF" onclick="wfRetModal();">Retrieve already created Work Flow</button>
+</div>
+
+
+<!--<a class="trigger_popup_fricc">Click here to show the popup</a>-->
+
+<div class="workFlowModal" id="workFlow">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">&times;</div>
+        <h1>Create a new Work Flow</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{form.work_flow_name(placeholder="Work Flow Name")}}
+            <br>
+            {{form.submit(class="button")}}
+        </form>
+
+
+    </div>
+</div>
+
+<div class="workFlowModal" id="retWorkFlow">
+    <span class="helper"></span>
+    <div>
+        <div id="close" class="popupCloseButton">&times;</div>
+        <h1>Retrieve a Work Flow</h1>
+        <form method="post">
+           <div class="custom-select">
+<!--              <select name="work_flow_name" >-->
+<!--                      <option value="0">Select WorkFLow:</option>-->
+<!--                      <option value="0">WorkFLow1</option>-->
+
+
+<!--                     {% for o in flowChartName %}-->
+
+<!--                           <option value="{{o}}">{{o}}</option>-->
+<!--                     {% endfor %}-->
+<!--              </select>-->
+            {{ form.hidden_tag() }}
+            {{form.select(placeholder="Work Flow Name")}}
+            <br>
+            {{form.submit(class="button")}}
+           </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
