@@ -13,7 +13,6 @@
 
 <div class="card">
    <h1 style=" text-align:center; font-weight:bold;">Add or Retrieve a <br /> Work Flow </h1>
-<!--   <h1 style=" text-align:center; font:bold;"></h1>-->
 
    <hr style="width:60%">
    <br>
@@ -23,49 +22,53 @@
 </div>
 
 
-<!--<a class="trigger_popup_fricc">Click here to show the popup</a>-->
-
 <div class="workFlowModal" id="workFlow">
     <span class="helper"></span>
     <div>
         <div class="popupCloseButton">&times;</div>
         <h1>Create a new Work Flow</h1>
         <form method="POST">
-            {{ form.hidden_tag() }}
-            {{form.work_flow_name(placeholder="Work Flow Name")}}
-            <br>
-            {{form.submit(class="button")}}
+            <input type="text" id="add-work-flow" name="add" placeholder="Work Flow Name" required>
+            <button type="submit"  id = "submit_form" name="submit" value="Add" class="button" >Add</button>
         </form>
-
-
     </div>
 </div>
+
 
 <div class="workFlowModal" id="retWorkFlow">
     <span class="helper"></span>
     <div>
         <div id="close" class="popupCloseButton">&times;</div>
         <h1>Retrieve a Work Flow</h1>
-        <form method="post">
+        <form method="POST" >
            <div class="custom-select">
-<!--              <select name="work_flow_name" >-->
-<!--                      <option value="0">Select WorkFLow:</option>-->
-<!--                      <option value="0">WorkFLow1</option>-->
-
-
-<!--                     {% for o in flowChartName %}-->
-
-<!--                           <option value="{{o}}">{{o}}</option>-->
-<!--                     {% endfor %}-->
-<!--              </select>-->
-            {{ form.hidden_tag() }}
-            {{form.select(placeholder="Work Flow Name")}}
+              <select name="nn">
+                     {% for o in workFlowList %}
+                           <option value="{{o}}">{{o}}</option>
+                     {% endfor %}
+              </select>
             <br>
-            {{form.submit(class="button")}}
+<!--            <button type = "submit" class="button" name="ret-work-flow" value="ret-work-flow" >Retrieve</button>-->
+            <button type="submit"  id = "ret-form" name="submit" value="Retrieve" class="button" >Retrieve</button>
+
            </div>
         </form>
     </div>
 </div>
 
+
 </body>
 </html>
+<div class="workFlowModal" id="ErrorPopup">
+    <span class="helper"></span>
+    <div>
+        <div id="closeError" class="popupCloseButton">&times;</div>
+        <h1 style="color: red; text-align:center;">Error: {{errorType}}</h1>
+        <hr>
+        <h2 style=" text-align:center; "id ="errorMsg" name="delId">Id:</h2>
+            </div>
+</div>
+
+{% if error %}
+    <script>errorShapeId('{{error}}')</script>
+{% endif %}

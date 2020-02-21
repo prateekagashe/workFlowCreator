@@ -1,37 +1,41 @@
 create database webApp;
 use webApp;
 
-// Table for storing shape details:
-create table shapeDetails (
-	ID int(255) auto_increment unique not null,
-        FlowChartId int(255) not null,
-	ParentId int(255),
-        ShapeId int(255) not null,
-	ShapeHeading varchar(250) not null,
-        ShapeTypeId int(255) not null,
-        ShapeDesc varchar(2000) not null,
-        condition1 varchar(200) ,
-        condition2 varchar(200) ,
-        condition3 varchar(200) ,
-        condition4 varchar(200) ,
-	foreign key(FlowChartId) references flowCharts(flowChartId),
-        foreign key(ShapeTypeId) references shapeType(shapeTypeID ),
-        key (ParentId, ShapeId)
-);                   
-
-
-//Table for storing flowChart Names:
-create table flowCharts(
-	flowChardId int(255) primary key auto_increment not null,
-        flowChartName varchar(500) not null
+create table work_flow(
+	work_flow_id int(10) unique auto_increment not null,
+    work_flow_name varchar(300) unique not null
 );
 
-//Table for storing type of shape:
-create table shapeType(
-	shapeTypeID int(255) primary key not null,
-        shapeType varchar(100) not null
+create table shape_type(
+	shape_type_id int(10) unique auto_increment not null,
+    shape_type varchar(100) unique not null
 );
 
+create table shape_details(
+	unique_id int(10) unique auto_increment not null,
+    work_flow_id int(10) not null,
+    parent_id int(10),
+	shape_sequence_id int(10) not null unsigned,
+    shape_name varchar(50) not null,
+    shape_type_id int(10) not null,
+    shape_desc varchar(5000) not null,
+    foreign key(work_flow_id) references work_flow(work_flow_id) on delete cascade,
+	foreign key(shape_type_id) references shape_type(shape_type_id ),
+	key (parent_id, shape_sequence_id)
+);
+insert into shape_type(shape_type) values ('draw_circle'), ('draw_diamond'), ('draw_oval'), ('draw_rectangle'), ('draw_square');
 
-// Insert Query for shapeType table 
-insert into shapeType(shapeTypeId, shapeType) values (101, 'draw_circle'), (102, 'draw_diamond'), (103, 'draw_oval'), (104, 'draw_rectangle'), (105, 'draw_square');
+
+
+//For Testing
+
+
+insert into work_flow(work_flow_name) values ('Agashe');
+
+INSERT INTO shape_details(work_flow_id, parent_id, shape_sequence_id, shape_name, shape_type_id, shape_desc) 
+VALUES((select work_flow_id from work_flow where work_flow_name = 'Prateek'), null, 
+11, 'try', (select shape_type_id from shape_type where shape_type = 'draw_square'), 'select');
+
+
+
+delete from work_flow where work_flow_name ='Prateek';

@@ -13,7 +13,7 @@ with open("dbCredentials.txt") as file:
                 credentials[newLine[0:key]] = newLine[key+1:]
 print(credentials)
 # MySQL Connection
-database = mysql.connector.connect(
+db = mysql.connector.connect(
     host=credentials['host'],
     database=credentials['database'],
     user=credentials['user'],

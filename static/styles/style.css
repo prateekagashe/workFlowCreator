@@ -94,6 +94,10 @@ body {
      .button:hover{
          box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
          }
+         .button5{
+         margin-left:10px;
+         background-color:  dodgerblue;
+         }
       .buttonAWF{
       margin-left:240px;
       margin-right:240px;
@@ -104,6 +108,10 @@ body {
       margin-left:195px;
       margin-right:195px;
       margin-top:20px;
+      }
+      .buttonDWF{
+      float:right;
+      margin-top:px;
       }
       .workFlowModal{
     background:rgba(0,0,0,.4);
@@ -162,11 +170,17 @@ input[type=text]::-ms-input-placeholder{
 .custom-select{
    position:relative;
 
+       width:100%;
+
+   text-align:center;
+
    padding:12px 20px;
 }
 .custom-select select{
    padding:12px 20px;
    width:100%;
+   text-align:center;
+   margin-left:6px;
    border:none;
    border-bottom:2px solid #380000;
 <!--   display:none;-->
@@ -177,6 +191,7 @@ input[type=text]::-ms-input-placeholder{
 .custom-select options{
    position: absolute;
    content:"";
+   text-align:center;
    top:14px;
    right:10px;
    width:0;
@@ -189,10 +204,10 @@ input[type=text]::-ms-input-placeholder{
 }
 .headCard {
      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-     background-color: #f1f1f1;
+     background-color: white;
      transition: 0.3s;
-     text-align: left;
-     margin-top:10px;
+
+     margin-top:8px;
      margin-left:6px;
      margin-right:6px;
      height :80px;
@@ -201,3 +216,107 @@ input[type=text]::-ms-input-placeholder{
  .headCard:hover {
  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
  }
+
+ .formInput[type=text],  input[type=number], [type=select]{
+   width:100%;
+   float:right;
+   margin-top: 6px;
+   box-sizing: border-box;
+   border:none;
+   border-bottom:2px solid #380000;
+   }
+.formInput[type=text], input[type=number]::placeholder{
+      text-align:center;
+   }
+.formInput[type=text], input[type=number]::-ms-input-placeholder{
+   text-align:center;
+   }
+
+.selectform{
+width:100%
+}
+
+.col-25 {
+         float: left;
+         width: 30%;
+         margin-top: 6px;
+                  margin-left: 6px;
+         }
+         .col-75 {
+         float: right;
+         width: 70%;
+                           margin-left: 6px;
+         margin-top: 3px;
+         }
+         .row:after {
+         content: "";
+         display: table;
+         clear: both;
+         }
+         @media screen and (max-width: 600px) {
+         .col-25, .col-75, input[type=submit] {
+         width: 100%;
+         margin-top: 0;
+         }
+         }
+         textarea{
+           width:100%;
+           height:40px;
+              border-bottom:2px solid #380000;
+
+         }
+         label{
+         font-weight:bold;
+         }
+
+           .card1 {
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+         background-color: white;
+         transition: 0.3s;
+         text-align: left;
+         margin-top:10px;
+         margin-left:6px;
+         margin-right:6px;
+         height :70px;
+         position:relative;
+<!--         display: none;-->
+         }
+         .card1:hover {
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+         }
+           .label1 {
+         color: white;
+         padding: 6px;
+         font-family: Arial;
+         font-weight: bold;
+         background-color: #2196F3;
+         float:right;
+         margin-top: 20px;
+         margin-right: 15px;
+         font-size: 16px;
+         }
+         .button9{
+         float:left;
+         background-color:#009933;
+         margin-left:20px;
+         padding: 15px;
+         }
+            .button10{
+         float:right;
+         background-color:#380000;
+         margin-right:20px;
+
+
+         }
+         .button11{
+            background-color:#ff9800;
+         }
+          .button12{
+          float:right;
+          margin-top:16px;
+            background-color:#ff9800;
+         }
+            .button13{
+          float:left;
+            background-color: dodgerblue;
+         }
