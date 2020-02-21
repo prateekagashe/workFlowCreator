@@ -15,7 +15,7 @@ create table shape_details(
 	unique_id int(10) unique auto_increment not null,
     work_flow_id int(10) not null,
     parent_id int(10),
-	shape_sequence_id int(10) not null unsigned,
+	shape_sequence_id int(10) unsigned not null,
     shape_name varchar(50) not null,
     shape_type_id int(10) not null,
     shape_desc varchar(5000) not null,
