@@ -456,8 +456,8 @@ function modModal(){
 var modal = document.getElementById('AddShape')
 var button = document.getElementById('submit_form')
 var descModal = document.getElementById('DescPopup')
-var close = document.getElementById('closeDesc')
-//var close = document.getElementsByClassName('popupCloseButton')[0]
+//var close = document.getElementById('closeDesc')
+var close = document.getElementsByClassName("popupCloseButton")[0]
 descModal.style.display = 'none'
 button.value = 'Modify_Form'
 button.innerHTML = "Modify"

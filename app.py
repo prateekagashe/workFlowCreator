@@ -7,6 +7,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def add_work_flow():
+    global error, errorType
+    error = ''
+    errorType = ''
     work_flow_list = database()
     print('before')
     # if request.method == 'POST':

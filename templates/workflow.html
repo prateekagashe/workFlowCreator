@@ -118,6 +118,7 @@
     <div>
         <div id="closeDesc" class="popupCloseButton">&times;</div>
         <h2>Shape Details</h2>
+        <hr style="width:100%">
         <div class="custom-select">
             <form method="POST">
                   <h3 id ="shapeId" name="delId" style="left-align:2px;">Id:</h3>
@@ -126,7 +127,7 @@
 
                   <h3>Description:</h3>
                   <div class="container" >
-                     <p id ="description" class="desc" style=" word-wrap: break-word; white-space:pre-line">Description:</p>
+                     <p id ="description" class="desc" style="overflow-y: scroll; word-wrap: break-word; white-space:pre-line">Description:</p>
                   </div>
                      <hr>
                   <button type="submit"  name="submit" value="DeleteShape" class="button button12" >Delete Shape</button>
