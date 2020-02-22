@@ -32,29 +32,6 @@
         <div id="close" class="popupCloseButton">&times;</div>
         <h3 id="formHeading" style="color:#020452;">Please enter shape details</h3>
         <hr style="width:100%">
-<!--&lt;!&ndash;        <form method="post" name="addshapeform" >&ndash;&gt;-->
-
-<!--           <form method="POST" >-->
-<!--               <label>Shape ID:</label>-->
-<!--               <input class="formInput" type="number" id="shape-id" name="shapeId" placeholder="Shape ID" required><br>-->
-<!--               <label>Shape Heading:</label><br>-->
-<!--               <input class="formInput" type="text" id="shape-heading" name="shapeHeading" placeholder="Shape Heading" required>-->
-<!--               <br>-->
-<!--               <label>Shape Type:</label><br>-->
-<!--                  <div class="custom-select">-->
-<!--               <select class="selectform" id="shape" name="shapeType">-->
-<!--                   <option value="draw_circle">Circle</option>-->
-<!--                   <option value="draw_square">Square</option>-->
-<!--                   <option value="draw_rectangle">Rectangle</option>-->
-<!--                   <option value="draw_diamond">Diamond</option>-->
-<!--                   <option value="draw_oval">Oval</option>-->
-<!--               </select><br>-->
-<!--                      </div>-->
-<!--               <label>Shape Description:</label>-->
-<!--               <textarea id="subject" name="shapeDesc" placeholder="Shape Description." style="height:200px" maxlength="5000" required></textarea>-->
-
-
-<!--           </form>-->
         <form id ="formShape" method="POST">
 
                   <div class="row">
@@ -64,7 +41,7 @@
                      <div class="col-75">
                         <input type="hidden" id="originalId" name="originalId" placeholder="shape id" maxlength="5">
 
-                        <input type="number" id="sID" name="shapeId" placeholder="shape id" maxlength="5"required>
+                        <input type="number" id="sID" min="0" name="shapeId" placeholder="shape id" maxlength="5"required>
                      </div>
                   </div>
                   <div class="row">
@@ -122,12 +99,14 @@
         <div class="custom-select">
             <form method="POST">
                   <h3 id ="shapeId" name="delId" style="left-align:2px;">Id:</h3>
-                  <h3 id ="heading" style="overflow-y: scroll; word-wrap: break-word; white-space:pre-line"></h3>
+                  <h3 id ="heading" style=" word-wrap: break-word; white-space:pre-line"></h3>
                   <input type="hidden" id="delId" name="delId"  >
 
                   <h3>Description:</h3>
                   <div class="container" >
-                     <p id ="description" class="desc" style="overflow-y: scroll; word-wrap: break-word; white-space:pre-line">Description:</p>
+                     <textarea id="description" name="shapeDescD " placeholder="Please provide shape description." style="height:200px" ></textarea>
+
+<!--                     <p id ="description" class="desc" style="overflow-y: scroll; wDescriptionord-wrap: break-word; white-space:pre-line">Description:</p>-->
                   </div>
                      <hr>
                   <button type="submit"  name="submit" value="DeleteShape" class="button button12" >Delete Shape</button>
