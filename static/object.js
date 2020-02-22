@@ -25,7 +25,8 @@ function wfRetModal(){
 
 function addShapesModal(){
    var addShape = document.getElementById("AddShape")
-   var closeAddShape = document.getElementsByClassName("popupCloseButton")[0]
+   var closeAddShape = document.getElementById("close")
+//   var closeAddShape = document.getElementsByClassName("popupCloseButton")[0]
    addShape.style.display  = "block"
    closeAddShape.onclick = function(){
         addShape.style.display = "none"
@@ -424,8 +425,8 @@ function point_it(event) {
     console.log(closest);
     if  (pos_x >= 500 && pos_x <= 650) {
         var modal2 = document.getElementById("DescPopup");
-//        var close = document.getElementById('close')
-        var span = document.getElementsByClassName("popupCloseButton")[0];
+        var close = document.getElementById('closeDesc')
+//        var span = document.getElementsByClassName("popupCloseButton")[0];
         document.getElementById("shapeId").innerHTML = "Shape Id:" + "   " + "   " +text_box[closest][2]
         document.getElementById("delId").value = text_box[closest][2]
         document.getElementById("heading").innerHTML ="Heading:" + "   " + "   " + text_box[closest][1]
@@ -445,7 +446,7 @@ function point_it(event) {
         document.getElementById('formHeading').innerHTML = 'Modify Shape Details'
         modal2.style.display = "block";
 
-        span.onclick = function() {
+        close.onclick = function() {
         modal2.style.display = "none";
     }
 
