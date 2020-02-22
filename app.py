@@ -11,10 +11,6 @@ def add_work_flow():
     error = ''
     errorType = ''
     work_flow_list = database()
-    print('before')
-    # if request.method == 'POST':
-    #     if request.form['submit'] == 'Add':
-    #         shapeId = request.form['shapeId']
     if request.method == 'POST':
         if request.form['submit'] == 'Add':
             session['work_flow_name'] = request.form['add']
@@ -63,7 +59,6 @@ def del_work_flow(name):
         height = 250 * len(shape_list) + 100
     else:
         height = 600
-    # print(shape_list, count, height)
     if request.method == 'POST':
         if request.form["submit"] == 'AddShape':
             shapeid = request.form['shapeId']
@@ -81,12 +76,15 @@ def del_work_flow(name):
                 return render_template('/workflow.html', name=session['work_flow_name'], shape_list=shape_list,
                                        count=total, height=height, error=error, errorType=errorType)
             else:
-                sql = """INSERT INTO shape_details(work_flow_id, parent_id, shape_sequence_id, shape_name, shape_type_id,
-                 shape_desc)  values(%s, %s, %s, %s, (select shape_type_id from shape_type where shape_type = %s), %s);"""
+
+                sql = """INSERT INTO shape_details(work_flow_id, parent_id, shape_sequence_id, shape_name, 
+                shape_type_id, shape_desc)  values(%s, %s, %s, %s, (select shape_type_id from shape_type where 
+                shape_type = %s), %s);"""
                 cursor = db.cursor()
                 cursor.execute(sql, (session['work_flow_id'][0], None, shapeid, shapehead, shapetype, shapedesc,))
                 db.commit()
                 cursor.close()
+
                 shape_list = []
                 shape_id = []
                 lastshapeid.clear()
@@ -107,7 +105,7 @@ def del_work_flow(name):
                 else:
                     height = 600
             return render_template('/workflow.html', name=session['work_flow_name'], shape_list=shape_list, count=total,
-                                   height=height, lastAxis=lastAxis)
+                                   height=height, lastAxis=lastAxis, errorType=errorType, error=error)
         if request.form['submit'] == 'DeleteShape':
             print('delete')
             delid = request.form['delId']
@@ -135,11 +133,11 @@ def del_work_flow(name):
             modshapetype = request.form['shapeType']
             modshapedesc = request.form['shapeDesc']
             originalId = request.form['originalId']
+            modshapedesc = modshapedesc.replace('\n', '<br>').replace('\r', '<br>')
+
             lastshapeid.clear()
             lastshapeid.append(modid)
             if originalId == modid:
-
-
                 cursor = db.cursor()
                 cursor.execute("""Update shape_details set shape_name = %s, shape_type_id = (select shape_type_id from 
                             shape_type where shape_type = %s ), shape_desc = %s where shape_sequence_id = %s and 
