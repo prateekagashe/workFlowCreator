@@ -9,6 +9,7 @@ function wfAddModal(){
    wfModal.style.display = "block"
    close.onclick = function(){
         wfModal.style.display = "none"
+        document.getElementById('add-work-flow').value = ''
    }
 
 }
@@ -448,6 +449,16 @@ function point_it(event) {
         modal2.style.display = "block";
 
         close.onclick = function() {
+          var button = document.getElementById('submit_form')
+
+          button.value = 'AddShape'
+        button.innerHTML = "Add Shape"
+
+       document.getElementById("shape").value = 'draw_circle'
+        document.getElementById('sID').value = ''
+        document.getElementById('sHeading').value = ''
+        document.getElementById('subject').innerHTML = ''
+        document.getElementById('formHeading').innerHTML = 'Please Enter Shape Details'
         modal2.style.display = "none";
     }
 
