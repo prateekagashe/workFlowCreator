@@ -29,6 +29,7 @@ function addShapesModal(){
 //   var closeAddShape = document.getElementsByClassName("popupCloseButton")[0]
    addShape.style.display  = "block"
    closeAddShape.onclick = function(){
+        document.getElementById('formShape').reset();
         addShape.style.display = "none"
    }
 }
@@ -461,11 +462,19 @@ var descModal = document.getElementById('DescPopup')
 var close = document.getElementsByClassName("popupCloseButton")[0]
 descModal.style.display = 'none'
 button.value = 'Modify_Form'
-button.innerHTML = "Modify"
+button.innerHTML = "Modify Shape"
 modal.style.display = 'block'
 
 close.onclick = function (){
-    modal.style.display = 'none'
+       button.value = 'AddShape'
+        button.innerHTML = "Add Shape"
+
+       document.getElementById("shape").value = 'draw_circle'
+        document.getElementById('sID').value = ''
+        document.getElementById('sHeading').value = ''
+        document.getElementById('subject').innerHTML = ''
+        document.getElementById('formHeading').innerHTML = 'Please Enter Shape Details'
+            modal.style.display = 'none'
 }
 }
 
