@@ -1,0 +1,144 @@
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+<script type="text/javascript" src="{{url_for('static', filename= 'object.js')}}" ></script>
+
+{% include 'header.html' %}
+{% block content %}
+{% endblock %}
+<div class="headCard">
+    <h2 style="text-align:center;">{{session['work_flow_name']}}</h2>
+<!--    url_for('work_flow', name=session['work_flow_name'])-->
+   <form method="POST" >
+        <input type="hidden" id="flowChartName" name="flowName" value="flowName">
+         <button type="submit"  id = "ret-form" name="submit" value="Delete" class="button button10" >Delete Work Flow</button>
+
+<!--        <button name="delWorkFLow" value="delWorkFLow" class="button" id=>Delete Work Flow</button>-->
+<!--        <button name="delWorkFLow" value="delWorkFLow" class="button" id=>Delete Work Flow</button>-->
+
+   </form>
+</div>
+ <div class="card1" id ="card" style="position: fixed; float:right;">
+<button id="AddWorkFlow" class="button button9" onclick="addShapesModal();">Add Shape</button>
+         <span class="label1">Total shapes added: {{count}}</span>
+      </div>
+<div id="pointer_div" onclick="point_it(event)" >
+    <canvas id="canvas" class="canvas" width="1200" height="{{height}}" style="border:solid 1px #000000; margin-left:70px; margin-top:50px; "  ></canvas>
+</div>
+
+
+<div class="workFlowModal" id="AddShape">
+    <span class="helper"></span>
+    <div>
+        <div id="close" class="popupCloseButton">&times;</div>
+        <h3 id="formHeading" style="color:#020452;">Please enter shape details</h3>
+        <hr style="width:100%">
+        <form id ="formShape" method="POST">
+
+                  <div class="row">
+                     <div class="col-25">
+                        <label for="fname">Shape Id</label>
+                     </div>
+                     <div class="col-75">
+                        <input type="hidden" id="originalId" name="originalId" placeholder="shape id" maxlength="5">
+
+                        <input type="number" id="sID" min="0" name="shapeId" placeholder="shape id" maxlength="5"required>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-25">
+                        <label for="lname">Shape Heading</label>
+                     </div>
+                     <div class="col-75">
+                        <input type="text" id="sHeading" name="shapeHeading" placeholder="shape heading" maxlength="50" required>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-25">
+                        <label for="shape">Shape Type</label>
+                     </div>
+                     <div class="col-75">
+                       <div class="custom-select">
+
+                        <select id="shape" name="shapeType">
+                           <option value="draw_circle">Circle</option>
+                           <option value="draw_square">Square</option>
+                           <option value="draw_rectangle">Rectangle</option>
+                           <option value="draw_diamond">Diamond</option>
+                           <option value="draw_oval">Oval</option>
+                        </select>
+                       </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-25">
+                        <label for="subject">Description</label>
+                     </div>
+                     <div class="col-75">
+                        <textarea id="subject" name="shapeDesc" placeholder="Please provide shape description." style="height:200px" maxlength="2000" required></textarea>
+                     </div>
+                  </div>
+
+                  <br>
+                  <div class="row">
+                      <hr style="width:100%">
+                      <button type="submit"  id = "submit_form" name="submit" value="AddShape" class="button button5" >Add Shape</button>
+                      <button type="reset"  id = "form_reset" name="submit" value="reset" class="button button11" >Reset</button>
+                  </div>
+               </form>
+
+    </div>
+</div>
+
+
+<div class="workFlowModal" id="DescPopup">
+    <span class="helper"></span>
+    <div>
+        <div id="closeDesc" class="popupCloseButton">&times;</div>
+        <h2>Shape Details</h2>
+        <hr style="width:100%">
+        <div class="custom-select">
+            <form method="POST">
+                  <h3 id ="shapeId" name="delId" style="left-align:2px;">Id:</h3>
+                  <h3 id ="heading" style=" word-wrap: break-word; white-space:pre-line"></h3>
+                  <input type="hidden" id="delId" name="delId"  >
+
+                  <h3>Description:</h3>
+                  <div class="container" >
+                     <textarea id="description" name="shapeDescD " readonly  style="height:200px" ></textarea>
+
+<!--                     <p id ="description" class="desc" style="overflow-y: scroll; wDescriptionord-wrap: break-word; white-space:pre-line">Description:</p>-->
+                  </div>
+                     <hr>
+                  <button type="submit"  name="submit" value="DeleteShape" class="button button12" >Delete Shape</button>
+            </form>
+
+               <button id="modBtn" class="button button5" onclick="modModal();" >Modify Shape</button>
+             <form id="nestedWork" method="POST">
+                 <input type="hidden" id="input" name="input_type" value="inputCheck" >
+
+             </form>
+
+           </div>
+    </div>
+</div>
+
+
+
+
+<div class="workFlowModal" id="ErrorPopup">
+    <span class="helper"></span>
+    <div>
+        <div id="closeError" class="popupCloseButton">&times;</div>
+        <h1 style="color: red; text-align:center;">Error: {{errorType}}</h1>
+        <hr>
+        <h2 style=" text-align:center; "id ="errorMsg" name="delId">Id:</h2>
+            </div>
+</div>
+
+{% if error %}
+    <script>errorShapeId('{{error}}')</script>
+{% endif %}
+
+{% for item in shape_list %}
+    <script>draw_shapes('{{item[0]}}', '{{item[1]}}', {{item[2]}}, '{{item[3]}}',{{item[5]}}, {{item[6]}}, '{{count}}', {{lastAxis}});</script>
+{% endfor %}
