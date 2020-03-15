@@ -7,6 +7,9 @@
 {% endblock %}
 <div class="headCard">
     <h2 style="text-align:center;">{{session['work_flow_name']}}</h2>
+    {% if nestedTotal %}
+        <h3 style="text-align:center;">Nested Level {{nestedTotal}}</h3>
+    {% endif %}
 <!--    url_for('work_flow', name=session['work_flow_name'])-->
    <form method="POST" >
         <input type="hidden" id="flowChartName" name="flowName" value="flowName">
@@ -21,8 +24,27 @@
 <button id="AddWorkFlow" class="button button9" onclick="addShapesModal();">Add Shape</button>
          <span class="label1">Total shapes added: {{count}}</span>
       </div>
+<div>
+    {% if nestedTotal %}
+
+    <form method="post">
+        <input type="hidden" name="parentWF" value="parent" >
+        <button class="linkButton" name="submit" value="parentWorkflow" style="margin-left:580px; margin-top:40px;" >  <a>Parent WorkFlow</a></button>
+    </form>
+    {% endif %}
+    {% if display %}
+    <form method="post">
+        <input type="hidden" name="nestedParentWF" value="parent" >
+        <button class="linkButton" name="submit" value="nestedParent" style="margin-left:520px;" >  <a>Nested Parent WorkFlow Level {{display}}</a></button>
+    </form>
+    {% endif %}
+
+</div>
 <div id="pointer_div" onclick="point_it(event)" >
-    <canvas id="canvas" class="canvas" width="1200" height="{{height}}" style="border:solid 1px #000000; margin-left:70px; margin-top:50px; "  ></canvas>
+    <canvas id="canvas" class="canvas" width="1200" height="{{height}}" style="border:solid 1px #000000; margin-left:70px; margin-top:50px; "  >
+        <a href="/">Parent WorkFlow</a>
+
+    </canvas>
 </div>
 
 
@@ -114,6 +136,7 @@
                <button id="modBtn" class="button button5" onclick="modModal();" >Modify Shape</button>
              <form id="nestedWork" method="POST">
                  <input type="hidden" id="input" name="input_type" value="inputCheck" >
+                 <button id="nestedBtn" name="submit" value="nestedId"  class="button button5" >Nested WorkFlow</button>
 
              </form>
 

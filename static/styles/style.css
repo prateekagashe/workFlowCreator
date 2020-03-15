@@ -321,3 +321,15 @@ width:100%
           float:left;
             background-color: dodgerblue;
          }
+.linkButton {
+    background: none! important;
+    border:none;
+    padding: 0;
+    cursor:pointer;
+    color:#069;
+    text-decoration: underline;
+    font-size:18px;
+}
+.linkButton:hover{
+    color:dodgerblue;
+}

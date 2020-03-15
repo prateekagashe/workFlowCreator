@@ -15,21 +15,44 @@ def database():
     cursor.close()
     return work_flow_list
 
-def shape_db(shape_list, shape_id):
-    sql = """select shape_sequence_id, shape_name, shape_type.shape_type, shape_desc, unique_id from shape_details 
-    left join shape_type on shape_type.shape_type_id = shape_details.shape_type_id left join work_flow
-     on work_flow.work_flow_id = shape_details.work_flow_id where work_flow_name = %s and parent_id is null"""
+def shape_db(session_shape_list, id=0, parent_id=0):
+    shape_list = []
+    shape_id = []
+    print('ses', session_shape_list)
+    print('from app', id)
+
+    if id != 0:
+        for item in session_shape_list[-1]:
+            print('inside for', item, item[0], id)
+            if int(item[0]) == int(id):
+                parent_id = item[4]
+                print(parent_id)
+                break
+    if parent_id == 0:
+        sql = """select shape_sequence_id, shape_name, shape_type.shape_type, shape_desc, unique_id from shape_details 
+        left join shape_type on shape_type.shape_type_id = shape_details.shape_type_id left join work_flow
+         on work_flow.work_flow_id = shape_details.work_flow_id where work_flow_name = %s and parent_id is null"""
+
+        data = (session['work_flow_name'],)
+    else:
+        sql= """select shape_sequence_id, shape_name, shape_type.shape_type, shape_desc, unique_id from shape_details 
+        left join shape_type on shape_type.shape_type_id = shape_details.shape_type_id left join work_flow
+         on work_flow.work_flow_id = shape_details.work_flow_id where work_flow_name = %s and parent_id = %s"""
+        data = (session['work_flow_name'], parent_id,)
     cursor = db.cursor()
-    cursor.execute(sql, (session['work_flow_name'],))
+    cursor.execute(sql, data)
     rows = cursor.fetchall()
     print("from sql", rows)
     cursor.close()
-    for item in rows:
-        shape_list.append(list(item))
-        shape_id.append(item[0])
-    shape_list = sort_list(shape_list)
-
-    return shape_list, shape_id
+    if rows:
+        for item in rows:
+            shape_list.append(list(item))
+            shape_id.append(item[0])
+        shape_list = sort_list(shape_list)
+    else:
+        shape_list.clear()
+        shape_id.clear()
+    return shape_list, shape_id, parent_id
 
 
 def axis(li):
@@ -57,7 +80,10 @@ def axis(li):
     return(li)
 
 
+
+
 def sort_list(shape_list):
+
     shape_list.sort(key=lambda x: x[0])
     final = axis(shape_list)
     return final
