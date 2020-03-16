@@ -68,29 +68,29 @@ def del_work_flow(name):
         shape_list, shape_id, id = shape_db(session_shape_list=[])
 
         print('shape ID', shape_id)
-        print('shapeidtype', type(shape_id[0]))
+        # print('shapeidtype', type(shape_id[0]))
         session_parent_id = []
         session_shape_list = session['shape_list']
 
 # session_shape_list.clear()
 # print('shape', shape_list)
-        if shape_list:
-            if session_shape_list:
-                if session_shape_list[-1] == shape_list:
-                    print('not 1ST EQUEAL')
-                    session_shape_list.append(shape_list)
-                    print('session', session_shape_list)
-            else:
-                print('sssss')
+    if shape_list:
+        if session_shape_list:
+            if session_shape_list[-1] == shape_list:
+                print('not 1ST EQUEAL')
                 session_shape_list.append(shape_list)
-        print('sess', session_shape_list)
-
-
-        total = len(shape_list)
-        if total > 2:
-            height = 250 * len(shape_list) + 100
+                print('session', session_shape_list)
         else:
-            height = 600
+            print('sssss')
+            session_shape_list.append(shape_list)
+    print('sess', session_shape_list)
+
+
+    total = len(shape_list)
+    if total > 2:
+        height = 250 * len(shape_list) + 100
+    else:
+        height = 600
     if request.method == 'POST':
         if request.form["submit"] == 'AddShape':
             shapeid = request.form['shapeId']
@@ -141,7 +141,8 @@ def del_work_flow(name):
                     shape_list, shape_id, id = shape_db(session_shape_list, 0, session['parent_id'])
                 else:
                     shape_list, shape_id, id = shape_db(session_shape_list)
-                session_shape_list.pop(-1)
+                if session_shape_list:
+                     session_shape_list.pop(-1)
                 session_shape_list.append(shape_list)
                 print('final_session', session_shape_list)
                 # shape_detail(lastAxis=lastshapeid, height=shape_list)4
@@ -383,6 +384,7 @@ def del_work_flow(name):
                 display = nested_total - 1
             print('display', display)
             print('session parent id',session_parent_id)
+            print('sessionshapelist',session_shape_list)
             shape_list = session_shape_list[-1]
             print('ses', session_shape_list)
             total = len(shape_list)
